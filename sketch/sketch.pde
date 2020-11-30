@@ -9,7 +9,6 @@ void setup(){
 
 void draw(){
   if(escena == -1){
-    frameRate(1);
     escena();
   } else if(escena == 0){
     escena_inicial();

@@ -10,7 +10,6 @@ void escena(){
   fill(255, 255, 255);
   textAlign(CENTER, CENTER);
   textSize(120);
-  text("TITOL DEL JOC", 640, 360); 
-  
+  text("TITOL DEL JOC", 640, 360);
 }
   
