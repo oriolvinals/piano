@@ -1,15 +1,25 @@
+import apsync.*;
+import processing.serial.*;
+
+AP_Sync arduino;
+
 int escena = -1; // -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
 int score = 0;
 int temps = 60;
+int distSensor = 10000;
 
 void setup(){
   size(1280, 720);
+  arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
 } 
 
 void draw(){
   if(escena == -1){
     escena();
+    if (distSensor < 20){
+      escena = 0;
+    }    
   } else if(escena == 0){
     escena_inicial();
   } else if(escena == 1){
