@@ -1,5 +1,4 @@
 void escena(){
-  PFont mono = createFont("font.ttf", 32);
   background(0);
   noStroke();
   for (int i = 0; i < 600; i++) {
@@ -9,7 +8,6 @@ void escena(){
   }
   
   fill(255, 255, 255);
-  textFont(mono);
   textAlign(CENTER, CENTER);
   textSize(120);
   text("titol del joc", 640, 360);

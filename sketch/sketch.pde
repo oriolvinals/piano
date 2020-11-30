@@ -1,16 +1,14 @@
 import apsync.*;
-import processing.serial.*;
+import processing.serial.*;AP_Sync arduino;
 
-AP_Sync arduino;
-
-int escena = -1; // -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
+int escena = -1;// -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
 int score = 0;
 int temps = 60;
 int distSensor = 10000;
 
 void setup(){
   size(1280, 720);
-  arduino = new AP_Sync(this,"COM3", 9600);
+  //arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
 } 
 
