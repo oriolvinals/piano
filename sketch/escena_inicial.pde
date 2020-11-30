@@ -1,12 +1,18 @@
 void escena_inicial(){
   background(255, 204, 0);
-  textSize(32);
+  
+  textSize(100);
   textAlign(CENTER, CENTER);
-  text("ESCENA INICIAL", 640, 60); 
-  fill(0, 102, 153);
+  text("titol del joc", 640, 150);
   
   textSize(50);
-  text("Jugar - q", 320, 500);
-  text("Instruccions - w", 860, 500); 
+  rectMode(CENTER);
+  fill(0, 0, 0);
+  rect(360, 500, 500, 150, 20, 0, 0, 20);
+  fill(255, 255, 255);
+  text("jugar", 360, 500);
+  rect(920, 500, 500, 150, 0, 20, 20, 0); 
+  fill(0, 0, 0);
+  text("instruccions", 920, 500); 
 }
   
