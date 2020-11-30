@@ -23,7 +23,9 @@ void draw(){
 }
 
 void keyPressed(){
-  if(escena == 0){ //Escena incial
+  if(escena == -1){
+    if(key == 'q') escena = 0; 
+  } else if(escena == 0){ //Escena incial
     if(key == 'q') escena = 2; //Jugar
     else if(key == 'w') escena = 1; //Instruccions
   } else if(escena == 1){ //Escena instruccions
