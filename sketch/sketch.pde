@@ -1,5 +1,8 @@
 import apsync.*;
-import processing.serial.*;AP_Sync arduino;
+import processing.serial.*;
+AP_Sync arduino;
+
+PFont font;
 
 int escena = -1;// -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
 int score = 0;
@@ -10,6 +13,8 @@ void setup(){
   size(1280, 720);
   //arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
+  font = createFont("font.ttf", 32);
+  textFont(font);
 } 
 
 void draw(){
