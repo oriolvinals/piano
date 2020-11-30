@@ -1,13 +1,15 @@
-int escena = 3; // -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
+int escena = -1; // -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
 int score = 0;
 int temps = 60;
 
 void setup(){
   size(1280, 720);
+  frameRate(60);
 } 
 
 void draw(){
   if(escena == -1){
+    frameRate(1);
     escena();
   } else if(escena == 0){
     escena_inicial();
