@@ -1,8 +1,19 @@
 void escena_inicial(){
-  background(255, 204, 0);
+  background(219, 180, 12);
+  noStroke();
+  for (int i = 0; i < 1000; i++) {
+    fill(random(255), random(255), random(255), random(255));
+    rect(random(1280), random(720), 55, 55, 7);
+  }
+  
+  
+ 
+  fill(0, 0, 0, 220);
+  rect(640, 160, 1280, 220);
   
   textSize(100);
   textAlign(CENTER, CENTER);
+  fill(255, 255, 255);
   text("titol del joc", 640, 150);
   
   textSize(50);

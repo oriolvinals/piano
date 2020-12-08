@@ -1,11 +1,13 @@
 void escena(){
-  background(0);
+  background(167, 94, 9);
   noStroke();
-  for (int i = 0; i < 600; i++) {
+  for (int i = 0; i < 1000; i++) {
     fill(random(255), random(255), random(255), random(255));
-    float r = random(200);
-    ellipse(random(1280), random(720), r, r); 
+    rect(random(1280), random(720), 55, 55, 7);
   }
+  
+  fill(0, 0, 0, 220);
+  rect(0, 270, 1280, 200);
   
   fill(255, 255, 255);
   textAlign(CENTER, CENTER);
