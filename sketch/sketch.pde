@@ -1,12 +1,17 @@
 import apsync.*;
 import processing.serial.*;
+import processing.sound.*;
+
 AP_Sync arduino;
+
+Sound s;
+SoundFile doS, reS, miS, faS, solS, laS, siS;
 
 PFont font;
 
-int escena = 2;// -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
+int escena = -1;// -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
 
-int score = 1;
+int score = 0;
 int temps = 60;
 int interval = 60;
 
@@ -24,6 +29,15 @@ void setup(){
   frameRate(60);
   font = createFont("font.ttf", 32);
   textFont(font);
+  
+  doS = new SoundFile(this, "sounds/Do.mp3");
+  reS = new SoundFile(this, "sounds/Re.mp3");
+  miS = new SoundFile(this, "sounds/Mi.mp3");
+  faS = new SoundFile(this, "sounds/Fa.mp3");
+  solS = new SoundFile(this, "sounds/Sol.mp3");
+  laS = new SoundFile(this, "sounds/La.mp3");
+  siS = new SoundFile(this, "sounds/Si.mp3");
+
 } 
 
 void draw(){
@@ -56,12 +70,27 @@ void keyPressed(){
   if(escena == -1){
     if(key == 'q') escena = 0; 
   } else if(escena == 0){ //Escena incial
-    if(key == 'q') escena = 2; //Jugar
-    else if(key == 'w') escena = 1; //Instruccions
+    if(key == 'q'){
+      escena = 2; //Jugar
+      doS.play();
+    }
+    else if(key == 'w') {
+      escena = 1; //Instruccions
+      siS.play();
+    }
   } else if(escena == 1){ //Escena instruccions
      if(key == 'q')escena = 2; //Jugar
   } else if(escena == 2){ //Escena instruccions
      if(key == 'q')escena = 3; //Jugar
+     
+     if(key == 'a') doS.play();
+     if(key == 's') reS.play();
+     if(key == 'd') miS.play();
+     if(key == 'f') faS.play();
+     if(key == 'g') solS.play();
+     if(key == 'h') laS.play();
+     if(key == 'j') siS.play();
+     
   } else if(escena == 3){
      if(key == 'q'){
        score = 0;

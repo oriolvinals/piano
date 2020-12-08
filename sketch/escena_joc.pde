@@ -7,14 +7,18 @@ class Cube {
     this.type = int(random(1, 7));
     this.x = 1280 / 7 * this.type - (1280/7/2);
     this.y = 0;
-    this.velocity = random(2, 8);
+    this.velocity = random(2, 5);
     this.col = int(split(colors[this.type-1], ',') );
   }
   
   void update(){
-    fill(this.col[0], this.col[1], this.col[2]);
-    rect(this.x - 20, this.y, 40, 40);
-    this.y += this.velocity;
+    if(this.y <= 720){
+      rectMode(CENTER);
+      noStroke();
+      fill(this.col[0], this.col[1], this.col[2]);
+      rect(this.x, this.y, 40, 40);
+      this.y += this.velocity;
+    }
   }
 }
 
@@ -39,13 +43,12 @@ void escena_joc(){
     line(x, 0, x, 720);
   }
   
+  rectMode(CORNER);
   fill(0, 0, 0);
   rect(0, 550, 1280, 100);
   line(0, 550, 1280, 550);
   line(0, 650, 1280, 650);
   
-  
-  noStroke();
   a.update();
 }
   
