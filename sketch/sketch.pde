@@ -9,9 +9,10 @@ SoundFile doS, reS, miS, faS, solS, laS, siS;
 
 PFont font;
 
-int escena = -1;// -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
+int escena = 3;// -1 = res, 0 = incial, 1 = instruccions, 2 = joc, 3 = puntuacions
 
 int score = 0;
+int blocs = 0;
 int temps = 60;
 int interval = 60;
 
@@ -21,7 +22,6 @@ String[] colors = {"245,34,156", "124,203,178", "168,172,5", "245,34,156", "124,
 
 Cube[] cubes = new Cube[1];
 Cube a = new Cube();
-
 
 void setup(){
   size(1280, 720);
@@ -56,7 +56,8 @@ void draw(){
   } else if(escena == 2){
     if(temps <= 0){
       escena = 3;
-      //Guardar puntuacio txt
+      //Guardar puntuacio
+      //Llegir puntuacions
     }
     frameRate(60);
     escena_joc();
@@ -94,6 +95,7 @@ void keyPressed(){
   } else if(escena == 3){
      if(key == 'q'){
        score = 0;
+       blocs = 0;
        temps = 60;
        interval = 60;
        escena = 2; //Tornar a jugar
