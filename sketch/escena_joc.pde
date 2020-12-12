@@ -49,8 +49,23 @@ void escena_joc() {
   rect(0, 550, 1280, 100);
   line(0, 550, 1280, 550);
   line(0, 650, 1280, 650);
-
+  
+  int r = (int) random(100);
+  
+  if (r == 0){
+    cubes.add(new Cube());
+  }
 
   //Cub
-  a.update();
+  for(int i = 0; i < cubes.size(); i++) {
+    if(cubes.get(i).y > 680){
+      cubes.remove(i);
+      wrong.play();
+    }else if (cubes.get(i).y > 580 && cubes.get(i).y >= 680){
+        // augmentar Score quan es clica (falta afagir codi)
+    }else{
+      cubes.get(i).update();
+    }    
+  }
+    
 }

@@ -7,7 +7,7 @@ import processing.sound.*;
 AP_Sync arduino;
 
 Sound s;
-SoundFile doS, reS, miS, faS, solS, laS, siS;
+SoundFile doS, reS, miS, faS, solS, laS, siS, wrong;
 SoundFile backgroundMusic;
 
 PFont font;
@@ -38,11 +38,10 @@ int[] scoreSort;
 String[] lines;
 
 //Proves cub
-Cube[] cubes = new Cube[1];
-Cube a = new Cube();
+ArrayList<Cube> cubes = new ArrayList<Cube>();
 
-void setup() {
-  size(1280, 720);
+void setup() { 
+  size(1280, 700);
   //arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
   font = createFont("font.ttf", 32);
@@ -55,6 +54,8 @@ void setup() {
   solS = new SoundFile(this, "sounds/Sol.mp3");
   laS = new SoundFile(this, "sounds/La.mp3");
   siS = new SoundFile(this, "sounds/Si.mp3");
+  
+  wrong = new SoundFile(this, "sounds/wrong.mp3");
   
   backgroundMusic = new SoundFile(this, "sounds/music.wav");
   backgroundMusic.amp(0.15);
