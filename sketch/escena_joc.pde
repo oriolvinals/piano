@@ -7,7 +7,8 @@ class Cube {
     this.type = int(random(1, 8));
     this.x = 1280 / 7 * this.type - (1280/7/2);
     this.y = 0;
-    this.velocity = random(2, 3);
+    //this.velocity = random(2, 3);
+    this.velocity = 4;
     this.col = int(split(colors[this.type-1], ',') );
   }
 
@@ -24,13 +25,14 @@ void escena_joc() {
   background(12, 200, 30);
   textFont(font);
   //No tocar
-  //temps = interval - int(millis()/ 1000);
+  //temps = interval - int(startTime/ 1000);
+  seconds = startTime - millis()/1000;
 
   //TEXTS
   textSize(25);
   textAlign(LEFT, CENTER);
   fill(0, 0, 0);
-  text(temps, 10, 20); 
+  text(seconds, 10, 20); 
   textAlign(RIGHT, CENTER);
   text(score, 1270, 20);
 
@@ -49,8 +51,7 @@ void escena_joc() {
   line(0, 550, 1280, 550);
   line(0, 650, 1280, 650);
 
-  int r = (int) random(200);
-
+  int r = (int) random(80);
   if (r == 0) {
     cubes.add(new Cube());
   }
@@ -60,12 +61,12 @@ void escena_joc() {
     if (cubes.get(i).y >= 700) {
       cubes.remove(i);
       wrong.play();
-      score -= 10;
+      score -= 5;
       break;
-    } else if (cubes.get(i).y >= 570 && cubes.get(i).y <= 690) {
+    } else if (cubes.get(i).y >= 550 && cubes.get(i).y <= 650) {
       cubes.get(i).update();
       if (cubes.get(i).type == keyClicked) {
-        score += 10;
+        score += 15;
         blocs++;
         keyClicked = -1;
         cubes.remove(i);
@@ -73,7 +74,7 @@ void escena_joc() {
       }
     } else {
       if (cubes.get(i).type == keyClicked) {
-        score -= 10;
+        score -= 15;
         keyClicked = -1;
         cubes.remove(i);
         break;

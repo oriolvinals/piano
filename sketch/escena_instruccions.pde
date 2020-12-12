@@ -1,3 +1,25 @@
+class CubeI {
+  float x, y, velocity;
+  int type;
+  color[] col;
+
+  CubeI() {
+    this.type = int(random(1, 8));
+    this.x = 540 / 7 * this.type - (540/7/2) + 150;
+    this.y = 130;
+    this.velocity = random(2, 3);
+    this.col = int(split(colors[this.type-1], ',') );
+  }
+
+  void update() {
+    rectMode(CENTER);
+    noStroke();
+    fill(this.col[0], this.col[1], this.col[2]);
+    rect(this.x, this.y, 22, 22);
+    this.y += this.velocity;
+  }
+}
+
 void escena_instruccions() {
   background(31,59,77);
   textFont(font);
@@ -8,10 +30,10 @@ void escena_instruccions() {
 
   fill(0, 0, 0);
   rectMode(CENTER);
-  rect(640, 640, 350, 100, 20, 20, 20, 20);
+  rect(640, 630, 350, 100, 20, 20, 20, 20);
   fill(255, 255, 255);
   textSize(50);
-  text("jugar", 640, 640);
+  text("jugar", 640, 630);
   
   //Rect
   rectMode(CORNER);
@@ -34,25 +56,29 @@ void escena_instruccions() {
   noStroke();
   fill(100, 100, 50);
   rect(100, 450, 640, 75);
-  
-  rectMode(CENTER);
-  for(int i = 0; i < 10; i++){
-    int type = int(random(1, 8));
-    int[] col = int(split(colors[type-1], ',') );
     
-    int w = 540;
-    int x = w / 7 * type - (w/7/2) + 150;
-    
-    fill(col[0], col[1], col[2]);
-    rect(x, random(150, 500), 20, 20);
-  }
-  
   //Text
   textAlign(LEFT, CENTER);
   fill(255, 255, 255);
   textFont(font2);
   textSize(20);
-  String instruccions = "Just quan el cuadrat estigui entre la \nfranja de color inferior haurem de tocar \nla tecla amb el color del cuadrat \ncorresponent, si deixem passar el cuadrat \nperdrem punts, per el contrari \nels guanyaras!";
+  String instruccions = "Just quan el cuadrat estigui entre la \nfranja del rectangle inferior haurem de \ntocar la tecla amb el color del cuadrat \ncorresponent, si deixem passar el cuadrat \nperdrem punts, per el contrari \nels guanyaras!";
   text(instruccions, 760, 310);
   textFont(font);
+  
+  int r = (int) random(100);
+
+  if (r == 0) {
+    iCubes.add(new CubeI());
+  }
+
+  //Cub
+  for (int i = 0; i < iCubes.size(); i++) {
+    if (iCubes.get(i).y >= 540) {
+      iCubes.remove(i);
+      break;
+    } else {
+      iCubes.get(i).update();
+    }
+  }
 }

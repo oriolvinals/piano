@@ -15,14 +15,14 @@ PFont font2;
 
 //Escena actual
 // -1 = ultrasons / 0 = incial / 1 = instruccions / 2 = joc / 3 = puntuacions
-int escena = 1;
+int escena = -1;
 
 int score = 0;
 int blocs = 0;
 int keyClicked = -1;
 
-int temps = 10;
-int interval = temps;
+final byte countdown = 45;
+int seconds = -1, startTime;
 
 //Sensor proximitat
 int distSensor = 10000;
@@ -39,14 +39,17 @@ int[] keyPiano = {65, 83, 68, 70, 71, LEFT, RIGHT};
 int[] scoreSort;
 String[] lines;
 
-//Proves cub
+//Cubs partida
 ArrayList<Cube> cubes = new ArrayList<Cube>();
+//Cubs instruccions
+ArrayList<CubeI> iCubes = new ArrayList<CubeI>();
 
 void setup() { 
   size(1280, 700);
   //arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
 
+  //Fonts
   font = createFont("font.ttf", 32);
   textFont(font);
   font2 = createFont("font2.ttf", 32);
@@ -84,19 +87,17 @@ void draw() {
     frameRate(10);
     escena_inicial();
   } else if (escena == 1) {
-    frameRate(4);
+    frameRate(60);
     escena_instruccions();
   } else if (escena == 2) {
-    if (temps <= 0) {
+    if (seconds == 0) {
       //Guardar puntuacio
       String[] newScores = Arrays.copyOf(lines, lines.length + 1);
       newScores[newScores.length - 1] = String.valueOf(score);
       saveStrings("scores.txt", newScores);
-
       //Llegir puntuacions
       lines = loadStrings("scores.txt");
       scoreSort = sortScores(lines);
-
       escena = 3;
     }
     frameRate(60);
@@ -113,27 +114,27 @@ void keyPressed() {
   } else if (escena == 0) { //Escena incial
     //Anar a jugar
     if (keyCode == keyPiano[0]) {
-      escena = 2;
+      startTime = millis()/1000 + countdown;
       doS.play();
+      escena = 2;
     }
     //Anar a les instruccions
     else if (keyCode == keyPiano[6]) {
-      escena = 1; 
       siS.play();
+      escena = 1; 
     }
   } 
   //Escena instruccions
   else if (escena == 1) { 
     //Anar a jugar
     if (keyCode == keyPiano[0]) {
-      escena = 2;
+      startTime = millis()/1000 + countdown;
       doS.play();
+      escena = 2;
     }
   }
   //Escena partida
-  else if (escena == 2) { 
-    if (key == 'q')escena = 3;
-
+  else if (escena == 2) {
     if (keyCode == keyPiano[0])  keyClicked = 1;
     else if (keyCode == keyPiano[1])  keyClicked = 2;
     else if (keyCode == keyPiano[2])  keyClicked = 3;
@@ -150,14 +151,11 @@ void keyPressed() {
     //Anar a jugar
     if (keyCode == keyPiano[0]) {
       doS.play();
-
       score = 0;
       blocs = 0;
-      interval = 10;
-      temps = 10;
+      seconds = -1;
+      startTime = millis()/1000 + countdown;
       cubes = new ArrayList<Cube>();
-
-      //Tornar a jugar
       escena = 2;
     }
   }
