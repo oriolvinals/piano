@@ -4,7 +4,7 @@ class Cube {
   color[] col;
 
   Cube() {
-    this.type = int(random(1, 7));
+    this.type = int(random(1, 8));
     this.x = 1280 / 7 * this.type - (1280/7/2);
     this.y = 0;
     this.velocity = random(2, 5);
@@ -24,6 +24,7 @@ class Cube {
 
 void escena_joc() {
   background(12, 200, 30);
+  textFont(font);
   //No tocar
   //temps = interval - int(millis()/ 1000);
 

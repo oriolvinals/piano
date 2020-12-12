@@ -1,5 +1,6 @@
 void escena() {
   background(0, 0, 0);
+  textFont(font);
   noStroke();
   for (int i = 0; i < 1000; i++) {
     fill(random(255), random(255), random(255), random(255));

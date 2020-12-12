@@ -1,7 +1,8 @@
 void escena_puntuacions() {
   background(12, 10, 20);
+  textFont(font);
 
-  fill(255, 255, 255, 10);
+  fill(255, 255, 255, 30);
   rect(0, 200, 1280, 520);
 
   //Titol
@@ -31,7 +32,7 @@ void escena_puntuacions() {
         else if (j == 2) fill(180, 180, 180);
         else fill(173, 138, 86);
       } else {
-        fill(0, 102, 153);
+        fill(31,167,116);
       }
       rect(x, y, 100, 100);
 
@@ -54,12 +55,12 @@ void escena_puntuacions() {
 
   //Boto Tornar a jugar
   fill(0, 0, 0);
-  rect(640, 650, 350, 100, 20, 20, 20, 20);
+  rect(640, 640, 350, 100, 20, 20, 20, 20);
 
   fill(255, 255, 255);
   textAlign(CENTER, CENTER);
   textSize(30);
-  text("torna a jugar", 640, 650);
+  text("torna a jugar", 640, 640);
   rectMode(CORNER);
 }
 

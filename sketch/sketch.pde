@@ -11,10 +11,11 @@ SoundFile doS, reS, miS, faS, solS, laS, siS, wrong;
 SoundFile backgroundMusic;
 
 PFont font;
+PFont font2;
 
 //Escena actual
 // -1 = ultrasons / 0 = incial / 1 = instruccions / 2 = joc / 3 = puntuacions
-int escena = -1;
+int escena = 3;
 
 int score = 0;
 int blocs = 0;
@@ -44,8 +45,11 @@ void setup() {
   size(1280, 700);
   //arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
+  
   font = createFont("font.ttf", 32);
   textFont(font);
+  font2 = createFont("font2.ttf", 32);
+  textFont(font2);
 
   //Sons
   doS = new SoundFile(this, "sounds/Do.mp3");
@@ -79,7 +83,7 @@ void draw() {
     frameRate(10);
     escena_inicial();
   } else if (escena == 1) {
-    frameRate(60);
+    frameRate(4);
     escena_instruccions();
   } else if (escena == 2) {
     if (temps <= 0) {
