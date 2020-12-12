@@ -15,10 +15,11 @@ PFont font2;
 
 //Escena actual
 // -1 = ultrasons / 0 = incial / 1 = instruccions / 2 = joc / 3 = puntuacions
-int escena = 3;
+int escena = 1;
 
 int score = 0;
 int blocs = 0;
+int keyClicked = -1;
 
 int temps = 10;
 int interval = temps;
@@ -45,7 +46,7 @@ void setup() {
   size(1280, 700);
   //arduino = new AP_Sync(this,"COM3", 9600);
   frameRate(60);
-  
+
   font = createFont("font.ttf", 32);
   textFont(font);
   font2 = createFont("font2.ttf", 32);
@@ -59,10 +60,10 @@ void setup() {
   solS = new SoundFile(this, "sounds/Sol.mp3");
   laS = new SoundFile(this, "sounds/La.mp3");
   siS = new SoundFile(this, "sounds/Si.mp3");
-  
+
   wrong = new SoundFile(this, "sounds/wrong.mp3");
   wrong.amp(0.05);
-  
+
   backgroundMusic = new SoundFile(this, "sounds/music.wav");
   backgroundMusic.amp(0.15);
   backgroundMusic.loop();
@@ -124,30 +125,41 @@ void keyPressed() {
   //Escena instruccions
   else if (escena == 1) { 
     //Anar a jugar
-      if (keyCode == keyPiano[0]) {
-        escena = 2;
-        doS.play();
-      }
+    if (keyCode == keyPiano[0]) {
+      escena = 2;
+      doS.play();
     }
+  }
   //Escena partida
   else if (escena == 2) { 
-    if (key == 'q')escena = 3; 
-  } 
+    if (key == 'q')escena = 3;
+
+    if (keyCode == keyPiano[0])  keyClicked = 1;
+    else if (keyCode == keyPiano[1])  keyClicked = 2;
+    else if (keyCode == keyPiano[2])  keyClicked = 3;
+    else if (keyCode == keyPiano[3])  keyClicked = 4;
+    else if (keyCode == keyPiano[4])  keyClicked = 5;
+    else if (keyCode == keyPiano[5])  keyClicked = 6;
+    else if (keyCode == keyPiano[6])  keyClicked = 7;
+    else{
+      keyClicked = -1;
+    }
+  }
   //Escena puntuacions
   else if (escena == 3) {
     //Anar a jugar
-      if (keyCode == keyPiano[0]) {
-        doS.play();
-        
-        score = 0;
-        blocs = 0;
-        interval = 10;
-        temps = 10;
-        cubes = new ArrayList<Cube>();
-  
-        //Tornar a jugar
-        escena = 2;
-      }
+    if (keyCode == keyPiano[0]) {
+      doS.play();
+
+      score = 0;
+      blocs = 0;
+      interval = 10;
+      temps = 10;
+      cubes = new ArrayList<Cube>();
+
+      //Tornar a jugar
+      escena = 2;
+    }
   }
 
   //Notes musicals
