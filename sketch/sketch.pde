@@ -47,6 +47,7 @@ void setup() {
   font = createFont("font.ttf", 32);
   textFont(font);
 
+  //Sons
   doS = new SoundFile(this, "sounds/Do.mp3");
   reS = new SoundFile(this, "sounds/Re.mp3");
   miS = new SoundFile(this, "sounds/Mi.mp3");
@@ -56,11 +57,13 @@ void setup() {
   siS = new SoundFile(this, "sounds/Si.mp3");
   
   wrong = new SoundFile(this, "sounds/wrong.mp3");
+  wrong.amp(0.05);
   
   backgroundMusic = new SoundFile(this, "sounds/music.wav");
   backgroundMusic.amp(0.15);
   backgroundMusic.loop();
 
+  //Score
   lines = loadStrings("scores.txt");
   scoreSort = sortScores(lines);
 } 
@@ -130,11 +133,13 @@ void keyPressed() {
   else if (escena == 3) {
     //Anar a jugar
       if (keyCode == keyPiano[0]) {
-        doS.play();score = 0;
+        doS.play();
         
+        score = 0;
         blocs = 0;
         interval = 10;
         temps = 10;
+        cubes = new ArrayList<Cube>();
   
         //Tornar a jugar
         escena = 2;

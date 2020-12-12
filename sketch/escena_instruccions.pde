@@ -10,4 +10,10 @@ void escena_instruccions() {
   fill(255, 255, 255);
   textSize(50);
   text("jugar", 640, 640);
+  
+  //Text
+  
+  
+  //Rect
+  rect
 }
