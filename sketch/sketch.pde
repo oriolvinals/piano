@@ -41,6 +41,7 @@ String[] lines;
 
 //Cubs partida
 ArrayList<Cube> cubes = new ArrayList<Cube>();
+int timerCubes;
 //Cubs instruccions
 ArrayList<CubeI> iCubes = new ArrayList<CubeI>();
 
@@ -68,7 +69,7 @@ void setup() {
   wrong.amp(0.05);
 
   backgroundMusic = new SoundFile(this, "sounds/music.wav");
-  backgroundMusic.amp(0.15);
+  backgroundMusic.amp(0.05);
   backgroundMusic.loop();
 
   //Score

@@ -7,7 +7,7 @@ class Cube {
     this.type = int(random(1, 8));
     this.x = 1280 / 7 * this.type - (1280/7/2);
     this.y = 0;
-    //this.velocity = random(2, 3);
+    this.velocity = random(4);
     this.velocity = 4;
     this.col = int(split(colors[this.type-1], ',') );
   }
@@ -24,8 +24,7 @@ class Cube {
 void escena_joc() {
   background(12, 200, 30);
   textFont(font);
-  //No tocar
-  //temps = interval - int(startTime/ 1000);
+
   seconds = startTime - millis()/1000;
 
   //TEXTS
@@ -51,9 +50,9 @@ void escena_joc() {
   line(0, 550, 1280, 550);
   line(0, 650, 1280, 650);
 
-  int r = (int) random(80);
-  if (r == 0) {
+  if (millis() - timerCubes >= 650) {
     cubes.add(new Cube());
+    timerCubes = millis();
   }
 
   //Cub
