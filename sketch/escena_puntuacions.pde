@@ -32,7 +32,7 @@ void escena_puntuacions() {
         else if (j == 2) fill(180, 180, 180);
         else fill(173, 138, 86);
       } else {
-        fill(31,167,116);
+        fill(31, 167, 116);
       }
       rect(x, y, 100, 100);
 

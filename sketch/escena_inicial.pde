@@ -13,7 +13,7 @@ void escena_inicial() {
   textSize(100);
   textAlign(CENTER, CENTER);
   fill(255, 255, 255);
-  text("titol del joc", 640, 150);
+  text("plastipiano", 640, 150);
 
   textSize(50);
   rectMode(CENTER);

@@ -7,9 +7,8 @@ class Cube {
     this.type = int(random(1, 8));
     this.x = 1280 / 7 * this.type - (1280/7/2);
     this.y = 0;
-    this.velocity = random(4);
-    this.velocity = 4;
-    this.col = int(split(colors[this.type-1], ',') );
+    this.velocity = 3.5;
+    this.col = int(split(colorsCubes[this.type-1], ','));
   }
 
   void update() {
@@ -58,14 +57,14 @@ void escena_joc() {
   //Cub
   for (int i = 0; i < cubes.size(); i++) {
     if (cubes.get(i).y >= 700) {
+      if(score > 0) score -= 5;
       cubes.remove(i);
       wrong.play();
-      score -= 5;
       break;
     } else if (cubes.get(i).y >= 550 && cubes.get(i).y <= 650) {
       cubes.get(i).update();
       if (cubes.get(i).type == keyClicked) {
-        score += 15;
+        score += 20;
         blocs++;
         keyClicked = -1;
         cubes.remove(i);
@@ -73,7 +72,7 @@ void escena_joc() {
       }
     } else {
       if (cubes.get(i).type == keyClicked) {
-        score -= 15;
+        if(score > 0) score -= 5;
         keyClicked = -1;
         cubes.remove(i);
         break;

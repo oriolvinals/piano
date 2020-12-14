@@ -13,5 +13,5 @@ void escena() {
   fill(255, 255, 255);
   textAlign(CENTER, CENTER);
   textSize(120);
-  text("titol del joc", 640, 360);
+  text("plastipiano", 640, 360);
 }

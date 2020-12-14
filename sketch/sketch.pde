@@ -15,7 +15,7 @@ PFont font2;
 
 //Escena actual
 // -1 = ultrasons / 0 = incial / 1 = instruccions / 2 = joc / 3 = puntuacions
-int escena = -1;
+int escena = 3;
 
 int score = 0;
 int blocs = 0;
@@ -28,7 +28,7 @@ int seconds = -1, startTime;
 int distSensor = 10000;
 
 //Colors dels quadrats, fa falta cambiar per els colors corresponents
-String[] colors = {"0, 0, 0", "124,203,178", "168,172,5", "245,34,156", "124,203,178", "168,172,5", "255, 255, 255"};
+String[] colorsCubes = {"0,0,0", "124,203,178", "124,203,178", "124,203,178", "124,203,178", "124,203,178", "255,255,255"};
 
 //Tecles de esquerra a dreta: A S D F G LEFT RIGHT
 //Tecles de esquerra a dreta: Negre..........Blanc

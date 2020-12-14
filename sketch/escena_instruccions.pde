@@ -7,8 +7,8 @@ class CubeI {
     this.type = int(random(1, 8));
     this.x = 540 / 7 * this.type - (540/7/2) + 150;
     this.y = 130;
-    this.velocity = random(2, 3);
-    this.col = int(split(colors[this.type-1], ',') );
+    this.velocity = 4;
+    this.col = int(split(colorsCubes[this.type-1], ','));
   }
 
   void update() {
@@ -62,14 +62,13 @@ void escena_instruccions() {
   fill(255, 255, 255);
   textFont(font2);
   textSize(20);
-  String instruccions = "Just quan el cuadrat estigui entre la \nfranja del rectangle inferior haurem de \ntocar la tecla amb el color del cuadrat \ncorresponent, si deixem passar el cuadrat \nperdrem punts, per el contrari \nels guanyaras!";
+  String instruccions = "Just quan el cuadrat estigui entre la \nfranja del rectangle inferior haurem de \ntocar la tecla amb el color del cuadrat \ncorresponent, si deixem passar el cuadrat \nperdrem punts, per el contrari els \nguanyaras! Si intentes explotar els \ncuadrats abans de que arribin a la franja \ntambe perdras punts!";
   text(instruccions, 760, 310);
   textFont(font);
   
-  int r = (int) random(100);
-
-  if (r == 0) {
+  if (millis() - timerCubes >= 650) {
     iCubes.add(new CubeI());
+    timerCubes = millis();
   }
 
   //Cub
