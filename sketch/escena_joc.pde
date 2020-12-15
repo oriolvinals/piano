@@ -7,7 +7,7 @@ class Cube {
     this.type = int(random(1, 8));
     this.x = 1280 / 7 * this.type - (1280/7/2);
     this.y = 0;
-    this.velocity = 3.5;
+    this.velocity = 4.5;
     this.col = int(split(colorsCubes[this.type-1], ','));
   }
 
@@ -49,7 +49,7 @@ void escena_joc() {
   line(0, 550, 1280, 550);
   line(0, 650, 1280, 650);
 
-  if (millis() - timerCubes >= 650) {
+  if (millis() - timerCubes >= 1000) {
     cubes.add(new Cube());
     timerCubes = millis();
   }
@@ -74,6 +74,7 @@ void escena_joc() {
       if (cubes.get(i).type == keyClicked) {
         if(score > 0) score -= 5;
         keyClicked = -1;
+        wrong.play();
         cubes.remove(i);
         break;
       }

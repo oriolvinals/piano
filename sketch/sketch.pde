@@ -15,7 +15,7 @@ PFont font2;
 
 //Escena actual
 // -1 = ultrasons / 0 = incial / 1 = instruccions / 2 = joc / 3 = puntuacions
-int escena = 3;
+int escena = -1;
 
 int score = 0;
 int blocs = 0;
@@ -28,7 +28,7 @@ int seconds = -1, startTime;
 int distSensor = 10000;
 
 //Colors dels quadrats, fa falta cambiar per els colors corresponents
-String[] colorsCubes = {"0,0,0", "124,203,178", "124,203,178", "124,203,178", "124,203,178", "124,203,178", "255,255,255"};
+String[] colorsCubes = {"0,0,0", "186,74,0", "241,11,11", "245,176,65", "243,239,16", "254,144,234", "255,255,255"};
 
 //Tecles de esquerra a dreta: A S D F G LEFT RIGHT
 //Tecles de esquerra a dreta: Negre..........Blanc
@@ -48,7 +48,7 @@ ArrayList<CubeI> iCubes = new ArrayList<CubeI>();
 void setup() { 
   size(1280, 700);
   //arduino = new AP_Sync(this,"COM3", 9600);
-  frameRate(60);
+  frameRate(30);
 
   //Fonts
   font = createFont("font.ttf", 32);
@@ -66,10 +66,10 @@ void setup() {
   siS = new SoundFile(this, "sounds/Si.mp3");
 
   wrong = new SoundFile(this, "sounds/wrong.mp3");
-  wrong.amp(0.05);
+  wrong.amp(0.20);
 
   backgroundMusic = new SoundFile(this, "sounds/music.wav");
-  backgroundMusic.amp(0.05);
+  backgroundMusic.amp(0.35);
   backgroundMusic.loop();
 
   //Score
@@ -88,7 +88,7 @@ void draw() {
     frameRate(10);
     escena_inicial();
   } else if (escena == 1) {
-    frameRate(60);
+    frameRate(30);
     escena_instruccions();
   } else if (escena == 2) {
     if (seconds == 0) {
@@ -101,7 +101,7 @@ void draw() {
       scoreSort = sortScores(lines);
       escena = 3;
     }
-    frameRate(60);
+    frameRate(30);
     escena_joc();
   } else {
     frameRate(10);
